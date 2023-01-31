@@ -1,3 +1,4 @@
+// looks good 
 export const getSavedEventIds = () => {
   const savedEventIds = localStorage.getItem('saved_events')
     ? JSON.parse(localStorage.getItem('saved_events'))
