@@ -11,6 +11,7 @@ export const QUERY_ME = gql`
         host
         image
         description
+        attendees
         title
         link
       }
