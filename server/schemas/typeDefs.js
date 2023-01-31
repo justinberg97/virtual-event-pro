@@ -9,6 +9,7 @@ const typeDefs = gql`
     email: String
     eventCount: Int
     savedEvents: [Event]
+    attendEvents: [Event]
   }
 
   type Event {
@@ -45,6 +46,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     saveEvent(eventData: EventInput!): User
     removeEvent(eventId: ID!): User
+    attendEvent(eventData: EventInput!): User
   }
 `;
 
