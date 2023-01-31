@@ -67,9 +67,17 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    // joinEvent: async (parent, { eventId }, context) => {
+    attendEvent: async (parent, { eventId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $push: { attendEvents: { eventId } } },
+        { new: true }
+        );
+        return updatedUser;
+      }
 
-    // }
+    }
   },
 };
 
