@@ -1,3 +1,5 @@
+// NEED TO FIX LINE 41
+
 import React, { useState, useEffect } from 'react';
 import {
   Jumbotron,
@@ -16,23 +18,17 @@ import { saveEventIds, getSavedEventIds } from '../utils/localStorage';
 import Auth from '../utils/auth';
 
 const SearchEvents = () => {
-  // create state for holding returned google api data
   const [searchedEvents, setSearchedEvents] = useState([]);
-  // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
-  // create state to hold saved eventId values
   const [savedEventIds, setSavedEventIds] = useState(getSavedEventIds());
 
   const [saveEvent, { error }] = useMutation(SAVE_EVENT);
 
-  // set up useEffect hook to save `savedEventIds` list to localStorage on component unmount
-  // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
     return () => saveEventIds(savedEventIds);
   });
 
-  // create method to search for events and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -51,7 +47,7 @@ const SearchEvents = () => {
 
       const { items } = await response.json();
 
-      const bookData = items.map((event) => ({
+      const eventData = items.map((event) => ({
         eventId: event.id,
         host: event.volumeInfo.host || ['No host to display'],
         title: event.volumeInfo.title,
@@ -66,12 +62,9 @@ const SearchEvents = () => {
     }
   };
 
-  // create function to handle saving a event to our database
   const handleSaveEvent = async (eventId) => {
-    // find the event in `searchedEvents` state by the matching id
     const eventToSave = searchedEvents.find((event) => event.eventId === eventId);
 
-    // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
