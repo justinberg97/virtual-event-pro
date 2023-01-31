@@ -1,4 +1,4 @@
-// Needs review
+// Needs review (added the add event to your profile)
 
 const { gql } = require('apollo-server-express');
 
@@ -15,6 +15,7 @@ const typeDefs = gql`
     eventId: ID!
     host: [String]
     description: String
+    attendees: String
     image: String
     link: String
     title: String!
@@ -28,6 +29,7 @@ const typeDefs = gql`
   input EventInput {
     host: [String]
     description: String!
+    attendees: String!
     eventId: String!
     image: String
     link: String

@@ -12,6 +12,11 @@ const eventSchema = new Schema({
     type: String,
     required: false,
   },
+  
+  attendees: {
+    type: String,
+    require: false,
+  },
 
   eventId: {
     type: String,
