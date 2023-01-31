@@ -31,7 +31,7 @@ const SavedEvents = () => {
 
     try {
       const { data } = await removeEvent({
-        variables: { EventId },
+        variables: { eventId },
       });
 
       // upon success, remove book's id from localStorage
