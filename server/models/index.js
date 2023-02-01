@@ -1,4 +1,4 @@
-// Good to go
+// Looks good
 
 const User = require('./User');
 

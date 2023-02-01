@@ -51,7 +51,7 @@ const resolvers = {
         return updatedUser;
       }
 
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('You must be logged in');
     },
     removeEvent: async (parent, { eventId }, context) => {
       if (context.user) {
@@ -64,7 +64,7 @@ const resolvers = {
         return updatedUser;
       }
 
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('You must be logged in');
     },
 
     attendEvent: async (parent, { eventId }, context) => {

@@ -39,14 +39,14 @@ const SavedEvents = () => {
   };
 
   if (loading) {
-    return <h2>LOADING...</h2>;
+    return <h2>Loading...</h2>;
   }
 
   return (
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Viewing {userData.username}'s Events!</h1>
+          <h1>Showing {userData.username}'s Events</h1>
         </Container>
       </Jumbotron>
       <Container>
@@ -64,19 +64,19 @@ const SavedEvents = () => {
                 {event.image ? (
                   <Card.Img
                     src={event.image}
-                    alt={`The cover for ${event.title}`}
+                    alt={`${event.title} image`}
                     variant="top"
                   />
                 ) : null}
                 <Card.Body>
                   <Card.Title>{event.title}</Card.Title>
-                  <p className="small">Host: {event.host}</p>
                   <Card.Text>{event.description}</Card.Text>
+                  <p className="small">Hosted by {event.host}</p>
                   <Button
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteEvent(event.eventId)}
                   >
-                    Delete event.
+                    Remove event
                   </Button>
                 </Card.Body>
               </Card>
