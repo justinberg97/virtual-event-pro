@@ -1,4 +1,4 @@
-// looks good 
+// Looks good 
 
 import { gql } from '@apollo/client';
 

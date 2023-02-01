@@ -42,7 +42,7 @@ const SearchEvents = () => {
       );
 
       if (!response.ok) {
-        throw new Error('something went wrong!');
+        throw new Error('something went wrong');
       }
 
       const { items } = await response.json();
@@ -85,7 +85,7 @@ const SearchEvents = () => {
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Search for Events!</h1>
+          <h1>Search for an Event</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -100,7 +100,7 @@ const SearchEvents = () => {
               </Col>
               <Col xs={12} md={4}>
                 <Button type="submit" variant="success" size="lg">
-                  Submit Search
+                  Search
                 </Button>
               </Col>
             </Form.Row>
@@ -112,7 +112,7 @@ const SearchEvents = () => {
         <h2>
           {searchedEvents.length
             ? `Viewing ${searchedEvents.length} results:`
-            : 'Search for a event to begin'}
+            : 'Search for an event to start'}
         </h2>
         <CardColumns>
           {searchedEvents.map((event) => {
@@ -121,13 +121,13 @@ const SearchEvents = () => {
                 {event.image ? (
                   <Card.Img
                     src={event.image}
-                    alt={`The cover for ${event.title}`}
+                    alt={`${event.title} image`}
                     variant="top"
                   />
                 ) : null}
                 <Card.Body>
                   <Card.Title>{event.title}</Card.Title>
-                  <p className="small">Host: {event.host}</p>
+                  <p className="small">Hosted by {event.host}</p>
                   <Card.Text>{event.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
@@ -138,8 +138,8 @@ const SearchEvents = () => {
                       onClick={() => handleSaveEvent(event.eventId)}
                     >
                       {savedEventIds?.some((savedId) => savedId === event.eventId)
-                        ? 'Event Already Saved!'
-                        : 'Save This Event!'}
+                        ? 'Event Already Saved'
+                        : 'Save Event'}
                     </Button>
                   )}
                 </Card.Body>

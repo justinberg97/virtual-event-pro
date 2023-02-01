@@ -20,9 +20,7 @@ const SavedEvents = () => {
 
   const userData = data?.me || {};
 
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteEvent = async (eventId) => {
-    // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -34,7 +32,6 @@ const SavedEvents = () => {
         variables: { eventId },
       });
 
-      // upon success, remove book's id from localStorage
       removeEventId(eventId);
     } catch (err) {
       console.error(err);
@@ -42,23 +39,23 @@ const SavedEvents = () => {
   };
 
   if (loading) {
-    return <h2>LOADING...</h2>;
+    return <h2>Loading...</h2>;
   }
 
   return (
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Viewing {userData.username}'s Events!</h1>
+          <h1>Showing {userData.username}'s Events</h1>
         </Container>
       </Jumbotron>
       <Container>
         <h2>
           {userData.SavedEvents?.length
             ? `Viewing ${userData.SavedEvents.length} saved ${
-                userData.SavedEvents.length === 1 ? 'event' : 'events'
+                userData.savedEvents.length === 1 ? 'event' : 'events'
               }:`
-            : 'You have no saved events!'}
+            : 'You have no events saved.'}
         </h2>
         <CardColumns>
           {userData.savedEvents?.map((event) => {
@@ -67,19 +64,18 @@ const SavedEvents = () => {
                 {event.image ? (
                   <Card.Img
                     src={event.image}
-                    alt={`The cover for ${event.title}`}
+                    alt={`${event.title} image`}
                     variant="top"
                   />
                 ) : null}
                 <Card.Body>
                   <Card.Title>{event.title}</Card.Title>
-                  <p className="small">Host: {event.host}</p>
-                  <Card.Text>{event.description}</Card.Text>
+                  <p className="small">Hosted by {event.host}</p>
                   <Button
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteEvent(event.eventId)}
                   >
-                    Delete this Event!
+                    Remove Event
                   </Button>
                 </Card.Body>
               </Card>
