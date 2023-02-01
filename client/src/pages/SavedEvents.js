@@ -20,9 +20,7 @@ const SavedEvents = () => {
 
   const userData = data?.me || {};
 
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteEvent = async (eventId) => {
-    // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -34,7 +32,6 @@ const SavedEvents = () => {
         variables: { eventId },
       });
 
-      // upon success, remove book's id from localStorage
       removeEventId(eventId);
     } catch (err) {
       console.error(err);
@@ -54,11 +51,11 @@ const SavedEvents = () => {
       </Jumbotron>
       <Container>
         <h2>
-          {userData.SavedEvents?.length
-            ? `Viewing ${userData.SavedEvents.length} saved ${
-                userData.SavedEvents.length === 1 ? 'event' : 'events'
+          {userData.savedEvents?.length
+            ? `Viewing ${userData.savedEvents.length} saved ${
+                userData.savedEvents.length === 1 ? 'event' : 'events'
               }:`
-            : 'You have no saved events!'}
+            : 'You have no events saved.'}
         </h2>
         <CardColumns>
           {userData.savedEvents?.map((event) => {
@@ -79,7 +76,7 @@ const SavedEvents = () => {
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteEvent(event.eventId)}
                   >
-                    Delete this Event!
+                    Delete event.
                   </Button>
                 </Card.Body>
               </Card>
