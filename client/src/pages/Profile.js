@@ -56,7 +56,7 @@ const SavedEvents = () => {
         <h2>
           {userData.SavedEvents?.length
             ? `Viewing ${userData.SavedEvents.length} saved ${
-                userData.savedEvents.length === 1 ? 'event' : 'events'
+                userData.SavedEvents.length === 1 ? 'event' : 'events'
               }:`
             : 'You have no saved events!'}
         </h2>
