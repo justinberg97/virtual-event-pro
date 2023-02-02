@@ -36,30 +36,30 @@ const SearchEvents = () => {
       return false;
     }
 
-    try {
-      const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`
-      );
+    // try {
+    //   const response = await fetch(
+    //     `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`
+    //   );
 
-      if (!response.ok) {
-        throw new Error('something went wrong');
-      }
+    //   if (!response.ok) {
+    //     throw new Error('something went wrong');
+    //   }
 
-      const { items } = await response.json();
+    //   const { items } = await response.json();
 
-      const eventData = items.map((event) => ({
-        eventId: event.id,
-        host: event.volumeInfo.host || ['No host to display'],
-        title: event.volumeInfo.title,
-        description: event.volumeInfo.description,
-        image: event.volumeInfo.imageLinks?.thumbnail || '',
-      }));
+    //   const eventData = items.map((event) => ({
+    //     eventId: event.id,
+    //     host: event.volumeInfo.host || ['No host to display'],
+    //     title: event.volumeInfo.title,
+    //     description: event.volumeInfo.description,
+    //     image: event.volumeInfo.imageLinks?.thumbnail || '',
+    //   }));
 
-      setSearchedEvents(eventData);
-      setSearchInput('');
-    } catch (err) {
-      console.error(err);
-    }
+    //   setSearchedEvents(eventData);
+    //   setSearchInput('');
+    // } catch (err) {
+    //   console.error(err);
+    // }
   };
 
   const handleSaveEvent = async (eventId) => {
