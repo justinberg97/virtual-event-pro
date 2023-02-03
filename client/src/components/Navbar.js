@@ -21,7 +21,7 @@ const AppNavbar = () => {
             <Nav className="ml-auto">
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to="/">
+                  <Nav.Link as={Link} to="/create">
                     Create Event
                   </Nav.Link>
                   <Nav.Link as={Link} to="/profile">

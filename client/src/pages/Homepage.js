@@ -12,7 +12,7 @@ function HomePage() {
           <Card.Body>
             <Card.Title>Virtual Event Pro</Card.Title>
             <Card.Text>
-              Organize and host events with ease using Virtual Event Pro.  Signup to begin, or Login to continue to your profile!
+              Organize and host events with ease using Virtual Event Pro.  Signup to begin, or login to continue to your profile!
             </Card.Text>
           </Card.Body>
         </Card>
