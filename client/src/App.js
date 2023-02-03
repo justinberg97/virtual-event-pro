@@ -46,7 +46,7 @@ function App() {
               element={<HomePage/>} 
             />
           <Route 
-              path="/createevents" 
+              path="/create" 
               element={<CreateEvents/>} 
             />
             <Route 
