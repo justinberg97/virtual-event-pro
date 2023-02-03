@@ -11,10 +11,9 @@ function HomePage() {
         <Card style={{ backgroundColor: "white", color: "#7c4dff" }}>
           <Card.Body>
             <Card.Title>Virtual Event Pro</Card.Title>
-            <Card.Text style={{ borderRadius: "50%, width: 100px: height: 100px," }}>
-              Organize and host events with ease using Virtual Event Pro.  Signup to begin, or Login to continue to your profile!
-              </Card.Text>
-
+            <Card.Text>
+              Organize and host events with ease using Virtual Event Pro.  Signup to begin, or login to continue to your profile!
+            </Card.Text>
           </Card.Body>
         </Card>
       </CardColumns>
