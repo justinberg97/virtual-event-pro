@@ -2,7 +2,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const eventSchema = require('./Event');
+const Event = require('./Event');
 
 const userSchema = new Schema(
   {
@@ -21,7 +21,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    savedEvents: [eventSchema],
+    savedEvents: [Event.schema],
   },
   {
     toJSON: {
