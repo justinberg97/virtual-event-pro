@@ -14,7 +14,7 @@ import { removeEventId } from '../utils/localStorage';
 
 import Auth from '../utils/auth';
 
-const SavedEvents = () => {
+const Profile = () => {
   const { loading, data } = useQuery(QUERY_ME);
   const [removeEvent, { error }] = useMutation(REMOVE_EVENT);
 

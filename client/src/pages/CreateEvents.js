@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Jumbotron, Card, CardColumns, Button } from "react-bootstrap";
 
-function EventForm() {
+function CreateEvents() {
   const [eventData, setEventData] = useState({
     host: "",
     title: "",
