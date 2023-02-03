@@ -44,7 +44,8 @@ const SavedEvents = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      <Jumbotron fluid style={{ backgroundColor: "#7c4dff", color: "white" }}>
+
         <Container>
           <h1>Showing {userData.username}'s Events</h1>
         </Container>

@@ -4,8 +4,8 @@ import { Container, Jumbotron, Card, CardColumns } from "react-bootstrap";
 function HomePage() {
   return (
     <Container>
-      <Jumbotron style={{ backgroundColor: "#7c4dff", color: "white" }}>
-        <h1 className="text-center">Welcome to Virtual Event Pro</h1>
+      <Jumbotron style={{ backgroundColor: "#7c4dff", color: "white", borderRadius: "50%", width: ""}}>
+        <h1 className="text-center, ">Welcome to Virtual Event Pro</h1>
       </Jumbotron>
       <CardColumns>
         <Card style={{ backgroundColor: "white", color: "#7c4dff" }}>

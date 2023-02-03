@@ -1,5 +1,8 @@
+
 body {
   font-family: 'Rubik', sans-serif;
+    border-radius: 50%;
+    
 }
 
 h1,
@@ -14,4 +17,10 @@ h6 {
 .small {
   font-weight: 300;
   font-style: italic;
+}
+
+
+#container {
+  padding:50px;
+  background-color:#FFF;
 }
