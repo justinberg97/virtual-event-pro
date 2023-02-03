@@ -36,30 +36,30 @@ const SearchEvents = () => {
       return false;
     }
 
-    // try {
-    //   const response = await fetch(
-    //     `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`
-    //   );
+  //   try {
+  //     const response = await fetch(
+  //       `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`
+  //     );
 
-    //   if (!response.ok) {
-    //     throw new Error('something went wrong');
-    //   }
+  //     if (!response.ok) {
+  //       throw new Error('something went wrong');
+  //     }
 
-    //   const { items } = await response.json();
+  //     const { items } = await response.json();
 
-    //   const eventData = items.map((event) => ({
-    //     eventId: event.id,
-    //     host: event.volumeInfo.host || ['No host to display'],
-    //     title: event.volumeInfo.title,
-    //     description: event.volumeInfo.description,
-    //     image: event.volumeInfo.imageLinks?.thumbnail || '',
-    //   }));
+  //     const eventData = items.map((event) => ({
+  //       eventId: event.id,
+  //       host: event.volumeInfo.host || ['No host to display'],
+  //       title: event.volumeInfo.title,
+  //       description: event.volumeInfo.description,
+  //       image: event.volumeInfo.imageLinks?.thumbnail || '',
+  //     }));
 
-    //   setSearchedEvents(eventData);
-    //   setSearchInput('');
-    // } catch (err) {
-    //   console.error(err);
-    // }
+  //     setSearchedEvents(eventData);
+  //     setSearchInput('');
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
   };
 
   const handleSaveEvent = async (eventId) => {
@@ -83,7 +83,8 @@ const SearchEvents = () => {
   };
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      <Jumbotron fluid style={{ backgroundColor: "#7c4dff", color: "white" }}>
+
         <Container>
           <h1>Search for an Event</h1>
           <Form onSubmit={handleFormSubmit}>
@@ -95,7 +96,7 @@ const SearchEvents = () => {
                   onChange={(e) => setSearchInput(e.target.value)}
                   type="text"
                   size="lg"
-                  placeholder="Search for a event"
+                  placeholder="Search for an event"
                 />
               </Col>
               <Col xs={12} md={4}>
@@ -112,7 +113,7 @@ const SearchEvents = () => {
         <h2>
           {searchedEvents.length
             ? `Viewing ${searchedEvents.length} results:`
-            : 'Search for an event to start'}
+            : 'Search for an event'}
         </h2>
         <CardColumns>
           {searchedEvents.map((event) => {
