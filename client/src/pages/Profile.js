@@ -87,4 +87,4 @@ const SavedEvents = () => {
   );
 };
 
-export default SavedEvents;
+export default Profile;
