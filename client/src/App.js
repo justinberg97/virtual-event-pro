@@ -13,6 +13,7 @@ import CreateEvents from './pages/CreateEvents';
 import SearchEvents from './pages/SearchEvents';
 import SavedEvents from './pages/SavedEvents';
 import Navbar from './components/Navbar';
+import HomePage from './pages/Homepage';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -42,6 +43,10 @@ function App() {
           <Routes>
           <Route 
               path="/" 
+              element={<HomePage/>} 
+            />
+          <Route 
+              path="/createevents" 
               element={<CreateEvents/>} 
             />
             <Route 
