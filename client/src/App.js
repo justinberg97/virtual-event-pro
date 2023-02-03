@@ -8,6 +8,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+import Profile from './pages/Profile';
+import CreateEvents from './pages/CreateEvents';
 import SearchEvents from './pages/SearchEvents';
 import SavedEvents from './pages/SavedEvents';
 import Navbar from './components/Navbar';
@@ -38,8 +40,16 @@ function App() {
         <>
           <Navbar />
           <Routes>
-            <Route 
+          <Route 
               path="/" 
+              element={<CreateEvents/>} 
+            />
+            <Route 
+              path="/profile" 
+              element={<Profile/>} 
+            />
+            <Route 
+              path="/search" 
               element={<SearchEvents/>} 
             />
             <Route 
