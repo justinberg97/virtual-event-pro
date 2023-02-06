@@ -21,18 +21,18 @@ const AppNavbar = () => {
             <Nav className="ml-auto">
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to="/create">
-                    Create Event
-                  </Nav.Link>
                   <Nav.Link as={Link} to="/profile">
                     Profile
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/create">
+                    Create Event
                   </Nav.Link>
                   <Nav.Link as={Link} to="/search">
                     Search For Events
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/saved">
+                  {/* <Nav.Link as={Link} to="/saved">
                     Saved Events
-                  </Nav.Link>
+                  </Nav.Link> */}
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (

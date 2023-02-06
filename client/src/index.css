@@ -24,3 +24,25 @@ h6 {
   padding:50px;
   background-color:#FFF;
 }
+
+.create-event {
+  background-color: darkgray;
+  width: 1000px;
+  padding: 10%;
+}
+
+.form-group {
+  color: white;
+}
+
+.homepage {
+  width: 1000px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+}

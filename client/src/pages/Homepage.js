@@ -4,15 +4,15 @@ import { Container, Jumbotron, Card, CardColumns } from "react-bootstrap";
 function HomePage() {
   return (
     <Container>
-      <Jumbotron style={{ backgroundColor: "#7c4dff", color: "white", borderRadius: "50%", width: ""}}>
+      <Jumbotron style={{ backgroundColor: "#7c4dff", color: "white", borderRadius: "55%", width: ""}}>
         <h1 className="text-center, ">Welcome to Virtual Event Pro</h1>
       </Jumbotron>
-      <CardColumns>
-        <Card style={{ backgroundColor: "white", color: "#7c4dff" }}>
+      <CardColumns className="center">
+        <Card className="center" style={{ backgroundColor: "white", color: "#7c4dff", textAlign: "center" }}>
           <Card.Body>
             <Card.Title>Virtual Event Pro</Card.Title>
             <Card.Text>
-              Organize and host events with ease using Virtual Event Pro.  Signup to begin, or login to continue to your profile!
+              Organize and host events with ease using Virtual Event Pro. Using this app you can create a profile to save and schedule your own events, while also viewing events from other users to save and attend. Signup to begin, or login to continue to your profile!
             </Card.Text>
           </Card.Body>
         </Card>
