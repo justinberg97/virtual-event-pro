@@ -13,12 +13,12 @@ const typeDefs = gql`
   }
 
   type Event {
-    host: [String]
+    _id: ID!    
+    host: String
     description: String
     attendees: String
-    image: String
-    link: String
     title: String!
+    user: ID!
   }
 
   type Auth {
@@ -27,16 +27,16 @@ const typeDefs = gql`
   }
 
   input EventInput {
-    host: [String]
+    host: String
     description: String
     attendees: String
-    image: String
-    link: String
     title: String!
+    user: ID!
   }
 
   type Query {
     me: User
+    searchEvents(searchText: String!): [Event]    
   }
 
   type Mutation {
