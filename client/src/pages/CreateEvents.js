@@ -19,12 +19,12 @@ function CreateEvents() {
   };
 
   return (
-    <Container>
+    <Container className="create-container">
       <Jumbotron>
         <h1 className="text-center">Create Event</h1>
         <CardColumns>
           <Card>
-            <Card.Body>
+            <Card.Body className="create-event">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="host">Host</label>
