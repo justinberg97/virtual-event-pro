@@ -13,7 +13,6 @@ const typeDefs = gql`
   }
 
   type Event {
-    eventId: ID!
     host: [String]
     description: String
     attendees: String
@@ -29,9 +28,8 @@ const typeDefs = gql`
 
   input EventInput {
     host: [String]
-    description: String!
-    attendees: String!
-    eventId: String!
+    description: String
+    attendees: String
     image: String
     link: String
     title: String!
