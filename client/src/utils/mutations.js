@@ -33,7 +33,6 @@ export const SAVE_EVENT = gql`
       username
       email
       savedEvents {
-        eventId
         host
         image
         description
@@ -52,7 +51,6 @@ export const REMOVE_EVENT = gql`
       username
       email
       savedEvents {
-        eventId
         host
         image
         description

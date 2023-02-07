@@ -1,21 +1,44 @@
 import React, { useState } from "react";
-import { Container, Jumbotron, Card, CardColumns, Button } from "react-bootstrap";
-
+import {
+  Container,
+  Jumbotron,
+  Card,
+  CardColumns,
+  Button,
+} from "react-bootstrap";
+import { useMutation } from "@apollo/client";
+import { SAVE_EVENT } from "../utils/mutations";
 function CreateEvents() {
   const [eventData, setEventData] = useState({
     host: "",
     title: "",
     description: "",
     attendees: "",
-    eventID: ""
   });
+
+  const [saveEvent, { error }] = useMutation(SAVE_EVENT);
 
   const handleChange = (event) => {
     setEventData({ ...eventData, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = (event) => {
+
     event.preventDefault();
+
+    try {
+      console.log(eventData)
+      const {data} = saveEvent({
+        variables: {
+          eventData: {
+            title: eventData.title
+          }
+        }
+      })
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
   };
 
   return (
@@ -66,17 +89,6 @@ function CreateEvents() {
                     id="attendees"
                     name="attendees"
                     value={eventData.attendees}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="eventID">Event ID</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="eventID"
-                    name="eventID"
-                    value={eventData.eventID}
                     onChange={handleChange}
                   />
                 </div>
