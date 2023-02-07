@@ -6,21 +6,15 @@ db.once("open", async () => {
 
   await Event.create(
     {
-      eventId: "1",
       host: "Sarah",
       description: "Group meeting to discuss plans for the project.",
-      image: "picture",
       attendees: "Mike, Jimmy",
-      link: "www.google.com",
       title: "Sarah's Group Meeting",
     },
     {
-      eventId: "2",
       host: "Jack",
       description: "Tech Conference for aspiring coders!",
-      image: "picture",
       attendees: "Mike, Jimmy",
-      link: "www.google.com",
       title: "Tech Conference",
     },
   );
