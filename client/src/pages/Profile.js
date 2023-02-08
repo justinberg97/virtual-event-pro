@@ -58,7 +58,7 @@ const Profile = () => {
         <CardColumns>
           {userData.savedEvents?.map((event, i) => {
             return (
-              <Card key={i} border="dark">
+              <Card key={i} border="dark" className= 'customCard'>
                 {event.image ? (
                   <Card.Img
                     src={event.image}
@@ -77,7 +77,7 @@ const Profile = () => {
                     Remove Event
                   </Button>
                 </Card.Body>
-              </Card>
+              </Card> 
             );
           })}
         </CardColumns>
