@@ -94,12 +94,12 @@ const SearchEvents = () => {
         <h2>
           {searchedEvents?.length
             ? `Viewing ${searchedEvents.length} results:`
-            : "Search for an event"}
+            : ""}
         </h2>
         <CardColumns>
           {searchedEvents?.map((event) => {
             return (
-              <Card key={event._id} border="dark">
+              <Card key={event._id} border="dark" className="customCard">
                 {event.image ? (
                   <Card.Img
                     src={event.image}

@@ -56,8 +56,8 @@ function CreateEvents() {
     <Container className="create-container">
       <Jumbotron>
         <h1 className="text-center">Create Event</h1>
-        <CardColumns>
-          <Card>
+        {/* <CardColumns> */}
+          <Card style={{width: "100%", display: 'flex', justifyContent: 'center'}}>
             <Card.Body className="create-event">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -107,7 +107,7 @@ function CreateEvents() {
               </form>
             </Card.Body>
           </Card>
-        </CardColumns>
+        {/* </CardColumns> */}
       </Jumbotron>
     </Container>
   );

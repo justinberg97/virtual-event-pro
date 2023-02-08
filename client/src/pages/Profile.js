@@ -53,12 +53,12 @@ const Profile = () => {
             ? `Viewing ${userData.SavedEvents.length} saved ${
                 userData.savedEvents.length === 1 ? 'event' : 'events'
               }:`
-            : 'You have no events saved.'}
+            : ''}
         </h2>
         <CardColumns>
           {userData.savedEvents?.map((event, i) => {
             return (
-              <Card key={i} border="dark">
+              <Card key={i} border="dark" className= 'customCard'>
                 {event.image ? (
                   <Card.Img
                     src={event.image}
@@ -77,7 +77,7 @@ const Profile = () => {
                     Remove Event
                   </Button>
                 </Card.Body>
-              </Card>
+              </Card> 
             );
           })}
         </CardColumns>
