@@ -1,6 +1,6 @@
 // NEED TO FIX LINE 41
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Jumbotron,
   Container,
@@ -9,25 +9,21 @@ import {
   Button,
   Card,
   CardColumns,
-} from 'react-bootstrap';
+} from "react-bootstrap";
 
-import { useMutation } from '@apollo/client';
-import { SAVE_EVENT } from '../utils/mutations';
-import { saveEventIds, getSavedEventIds } from '../utils/localStorage';
+import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
+import { SAVE_EVENT } from "../utils/mutations";
+import { QUERY_ME } from '../utils/queries';
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
+import { SEARCH_EVENTS } from "../utils/queries";
 
 const SearchEvents = () => {
-  const [searchedEvents, setSearchedEvents] = useState([]);
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
 
-  const [savedEventIds, setSavedEventIds] = useState(getSavedEventIds());
-
-  const [saveEvent, { error }] = useMutation(SAVE_EVENT);
-
-  useEffect(() => {
-    return () => saveEventIds(savedEventIds);
-  });
+  const { data: loggedInUser } = useQuery(QUERY_ME);
+  const [saveEvent] = useMutation(SAVE_EVENT);
+  const [searchEvents, { refetch, data }] = useLazyQuery(SEARCH_EVENTS);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -36,35 +32,19 @@ const SearchEvents = () => {
       return false;
     }
 
-  //   try {
-  //     const response = await fetch(
-  //       `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`
-  //     );
-
-  //     if (!response.ok) {
-  //       throw new Error('something went wrong');
-  //     }
-
-  //     const { items } = await response.json();
-
-  //     const eventData = items.map((event) => ({
-  //       eventId: event.id,
-  //       host: event.volumeInfo.host || ['No host to display'],
-  //       title: event.volumeInfo.title,
-  //       description: event.volumeInfo.description,
-  //       image: event.volumeInfo.imageLinks?.thumbnail || '',
-  //     }));
-
-  //     setSearchedEvents(eventData);
-  //     setSearchInput('');
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
+    try {
+      await searchEvents({
+        variables: { searchText: searchInput },
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const handleSaveEvent = async (eventId) => {
-    const eventToSave = searchedEvents.find((event) => event.eventId === eventId);
-
+  const handleSaveEvent = async (eventToSave) => {
+    delete eventToSave._id;
+    delete eventToSave.__typename;
+    eventToSave.user = loggedInUser.me._id
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -72,19 +52,20 @@ const SearchEvents = () => {
     }
 
     try {
-      const { data } = await saveEvent({
-        variables: { eventData: { ...eventToSave } },
+      await saveEvent({
+        variables: { eventData: eventToSave},
       });
-      console.log(savedEventIds);
-      setSavedEventIds([...savedEventIds, eventToSave.eventId]);
+      refetch();
     } catch (err) {
       console.error(err);
     }
   };
+
+  const searchedEvents = data?.searchEvents;
+
   return (
     <>
       <Jumbotron fluid style={{ backgroundColor: "#7c4dff", color: "white" }}>
-
         <Container>
           <h1>Search for an Event</h1>
           <Form onSubmit={handleFormSubmit}>
@@ -111,14 +92,14 @@ const SearchEvents = () => {
 
       <Container>
         <h2>
-          {searchedEvents.length
+          {searchedEvents?.length
             ? `Viewing ${searchedEvents.length} results:`
-            : 'Search for an event'}
+            : "Search for an event"}
         </h2>
         <CardColumns>
-          {searchedEvents.map((event) => {
+          {searchedEvents?.map((event) => {
             return (
-              <Card key={event.eventId} border="dark">
+              <Card key={event._id} border="dark">
                 {event.image ? (
                   <Card.Img
                     src={event.image}
@@ -132,15 +113,17 @@ const SearchEvents = () => {
                   <Card.Text>{event.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
-                      disabled={savedEventIds?.some(
-                        (savedId) => savedId === event.eventId
+                      disabled={loggedInUser?.me?.savedEvents?.some(
+                        (e) => e.user === event.user
                       )}
                       className="btn-block btn-info"
-                      onClick={() => handleSaveEvent(event.eventId)}
+                      onClick={() => handleSaveEvent(JSON.parse(JSON.stringify(event)))}
                     >
-                      {savedEventIds?.some((savedId) => savedId === event.eventId)
-                        ? 'Event Already Saved'
-                        : 'Save Event'}
+                      {loggedInUser?.me?.savedEvents?.some(
+                        (e) => e.user === event.user
+                      )
+                        ? "Event Already Saved"
+                        : "Save Event"}
                     </Button>
                   )}
                 </Card.Body>

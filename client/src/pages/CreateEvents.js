@@ -8,6 +8,9 @@ import {
 } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { SAVE_EVENT } from "../utils/mutations";
+import { useNavigate } from "react-router-dom";
+import Auth from "../utils/auth";
+
 function CreateEvents() {
   const [eventData, setEventData] = useState({
     host: "",
@@ -16,11 +19,15 @@ function CreateEvents() {
     attendees: "",
   });
 
+  const loggedInUser = Auth.getProfile();  
+
   const [saveEvent, { error }] = useMutation(SAVE_EVENT);
 
   const handleChange = (event) => {
     setEventData({ ...eventData, [event.target.name]: event.target.value });
   };
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
 
@@ -31,11 +38,15 @@ function CreateEvents() {
       const {data} = saveEvent({
         variables: {
           eventData: {
-            title: eventData.title
+            title: eventData.title,
+            host: eventData.host,
+            description: eventData.description,
+            user: loggedInUser.data._id
           }
         }
       })
       console.log(data)
+      navigate("/profile")
     } catch (err) {
       console.log(err)
     }
@@ -50,7 +61,7 @@ function CreateEvents() {
             <Card.Body className="create-event">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="host">Host</label>
+                  <label htmlFor="host">Event Host:</label>
                   <input
                     type="text"
                     className="form-control"
@@ -61,7 +72,7 @@ function CreateEvents() {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="title">Title</label>
+                  <label htmlFor="title">Event Title:</label>
                   <input
                     type="text"
                     className="form-control"
@@ -72,7 +83,7 @@ function CreateEvents() {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="description">Description</label>
+                  <label htmlFor="description">Event Description:</label>
                   <textarea
                     className="form-control"
                     id="description"
@@ -81,7 +92,7 @@ function CreateEvents() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label htmlFor="attendees">Attendees</label>
                   <input
                     type="text"
@@ -91,8 +102,8 @@ function CreateEvents() {
                     value={eventData.attendees}
                     onChange={handleChange}
                   />
-                </div>
-                <Button type="submit">Create Event</Button>
+                </div> */}
+                <Button variant="success" type="submit">Create Event</Button>
               </form>
             </Card.Body>
           </Card>

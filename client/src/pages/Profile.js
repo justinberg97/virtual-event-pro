@@ -10,7 +10,6 @@ import {
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { REMOVE_EVENT } from '../utils/mutations';
-import { removeEventId } from '../utils/localStorage';
 
 import Auth from '../utils/auth';
 
@@ -31,8 +30,6 @@ const Profile = () => {
       const { data } = await removeEvent({
         variables: { eventId },
       });
-
-      removeEventId(eventId);
     } catch (err) {
       console.error(err);
     }
@@ -59,9 +56,9 @@ const Profile = () => {
             : 'You have no events saved.'}
         </h2>
         <CardColumns>
-          {userData.savedEvents?.map((event) => {
+          {userData.savedEvents?.map((event, i) => {
             return (
-              <Card key={event.eventId} border="dark">
+              <Card key={i} border="dark">
                 {event.image ? (
                   <Card.Img
                     src={event.image}
@@ -72,9 +69,10 @@ const Profile = () => {
                 <Card.Body>
                   <Card.Title>{event.title}</Card.Title>
                   <p className="small">Hosted by {event.host}</p>
+                  <p className="small">Description: {event.description}</p>
                   <Button
                     className="btn-block btn-danger"
-                    onClick={() => handleDeleteEvent(event.eventId)}
+                    onClick={() => handleDeleteEvent(event._id)}
                   >
                     Remove Event
                   </Button>

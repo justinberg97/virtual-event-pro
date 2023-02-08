@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_ME = gql`
   {
@@ -7,14 +7,26 @@ export const QUERY_ME = gql`
       username
       email
       savedEvents {
-        eventId
         host
-        image
         description
         attendees
         title
-        link
+        _id
+        user
       }
+    }
+  }
+`;
+
+export const SEARCH_EVENTS = gql`
+  query SearchEvents($searchText: String!) {
+    searchEvents(searchText: $searchText) {
+      _id
+      host
+      description
+      attendees
+      title
+      user
     }
   }
 `;

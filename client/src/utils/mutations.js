@@ -34,11 +34,9 @@ export const SAVE_EVENT = gql`
       email
       savedEvents {
         host
-        image
         description
         attendees
         title
-        link
       }
     }
   }
@@ -52,11 +50,9 @@ export const REMOVE_EVENT = gql`
       email
       savedEvents {
         host
-        image
         description
         attendees
         title
-        link
       }
     }
   }
