@@ -27,8 +27,8 @@ h6 {
 
 .create-event {
   background-color: #7c4dff;
-  width: 1000px;
-  padding: 10%;
+  width: 100%;
+  padding: 5%;
 }
 
 .form-group {
@@ -45,4 +45,13 @@ h6 {
   margin: auto;
   width: 100%;
   padding: 10px;
+}
+
+.customCard {
+  /* backgroundColor: "rgba(20,20,20,0.3)", color: "#7c4dff", textAlign: "center", boxShadow: "5px 5px 5px ", border: ".5px solid black" }}> */
+  background-color: rgba(20,20,20,0.3);
+  color: #7c4dff;
+  text-align: center;
+  box-shadow: 5px 5px 5px;
+  border:.5px solid black;
 }

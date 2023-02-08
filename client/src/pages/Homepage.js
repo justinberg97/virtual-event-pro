@@ -4,11 +4,11 @@ import { Container, Jumbotron, Card, CardColumns } from "react-bootstrap";
 function HomePage() {
   return (
     <Container>
-      <Jumbotron style={{ backgroundColor: "#7c4dff", color: "white", borderRadius: "55%", width: ""}}>
-        <h1 className="text-center, ">Welcome to Virtual Event Pro</h1>
+      <Jumbotron style={{ backgroundColor: "#7c4dff", color: "white", borderRadius: "55%", padding: "80px"}}>
+        <h1 className="text-center ">Welcome to Virtual Event Pro</h1>
       </Jumbotron>
       <CardColumns className="center">
-        <Card className="center" style={{ backgroundColor: "white", color: "#7c4dff", textAlign: "center" }}>
+        <Card className="center customCard">
           <Card.Body>
             <Card.Title>Virtual Event Pro</Card.Title>
             <Card.Text>
