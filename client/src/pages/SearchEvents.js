@@ -94,7 +94,7 @@ const SearchEvents = () => {
         <h2>
           {searchedEvents?.length
             ? `Viewing ${searchedEvents.length} results:`
-            : "Search for an event"}
+            : ""}
         </h2>
         <CardColumns>
           {searchedEvents?.map((event) => {

@@ -53,7 +53,7 @@ const Profile = () => {
             ? `Viewing ${userData.SavedEvents.length} saved ${
                 userData.savedEvents.length === 1 ? 'event' : 'events'
               }:`
-            : 'You have no events saved.'}
+            : ''}
         </h2>
         <CardColumns>
           {userData.savedEvents?.map((event, i) => {
